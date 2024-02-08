@@ -12,6 +12,7 @@ import { RiTeamFill } from "react-icons/ri";
 import { CgGenderFemale } from "react-icons/cg";
 import { SlCalender } from "react-icons/sl";
 import { PiSoccerBall } from "react-icons/pi";
+import {ClubList} from "../club-list/club-list";
 
 const sideMenu = [
     { title: 'Home', path: '/home', Icon: HomeIcon },
@@ -61,10 +62,15 @@ export default function TemporaryDrawer() {
                                 </ListItemIcon>
                                 <ListItemText primary={title} />
                             </ListItemButton>
+                            {index === 1 &&
+                                <ClubList/>
+                            }
                         </ListItem>
+
                     )
                 })}
             </List>
+
         </Box>
     );
 
