@@ -22,6 +22,7 @@ import './main-page.scss';
 import SearchBar from "../search-bar/search-bar";
 import {Button} from "@mui/material";
 import HotComments from "../hot-comments/hot-comments";
+import MoreInformation from "../more-information/more-information";
 
 const sideMenu = [
     { title: 'Home', path: '/home', Icon: FiHome },
@@ -118,10 +119,13 @@ export default function MainPage() {
             </div>
 
             <div className={"BottomBox"}>
-                <h2> Hot Comments </h2>
                 <div className={"HotCommentBox"}>
                     <HotComments></HotComments>
                 </div>
+                <div className={"MoreInformationBox"}>
+                    <MoreInformation/>
+                </div>
+
 
             </div>
         </div>

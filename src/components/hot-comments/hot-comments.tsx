@@ -3,7 +3,6 @@ import { Grid, Paper, Typography, Avatar, Button } from '@mui/material/';
 
 import './hot-comments.scss';
 import {CardContent, CardHeader} from "@mui/material";
-import {MdKeyboardArrowRight} from "react-icons/md";
 
 function HotComments() {
     const comments = [
@@ -68,13 +67,14 @@ function HotComments() {
 
     return (
         <div>
+            <h2 className={"HotCommentTitle"}> Hot Comments </h2>
             <Grid container spacing={4}>
                 {comments.map((comment) => (
                     <Grid item sm={12} md={6} lg={4} xl={3} key={comment.id}>
                         <Paper className={"PaperBox"} elevation={3}>
                             <CardHeader
                                 avatar={
-                                    <Avatar className={"AvatarBox"} alt={comment.userName} src={comment.userImage} />
+                                    <Avatar className={"AvatarBox"} alt={comment.userName} src={comment.userImage}/>
                                 }
                                 title={comment.userName}
                                 subheader={comment.date}
@@ -87,7 +87,7 @@ function HotComments() {
                     </Grid>
                 ))}
             </Grid>
-            <div className={"BottomBox"}>
+            <div className={"CommentBottomBox"}>
                 <div className={"MoreCommentBox inter-regular"}>
                     <span>More Comments &gt;</span>
 

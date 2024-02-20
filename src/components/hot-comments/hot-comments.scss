@@ -4,11 +4,15 @@
 
 }
 
+.HotCommentTitle {
+  text-align: start;
+}
+
 .GridContainer {
   height: 100%;
 }
 
-.BottomBox {
+.CommentBottomBox {
   display: flex;
   justify-content: end;
   padding-top: 20px;
