@@ -3,6 +3,7 @@ import { Grid, Paper, Typography, Avatar, Button } from '@mui/material/';
 
 import './hot-comments.scss';
 import {CardContent, CardHeader} from "@mui/material";
+import {MdKeyboardArrowRight} from "react-icons/md";
 
 function HotComments() {
     const comments = [
@@ -66,28 +67,35 @@ function HotComments() {
     ;
 
     return (
-        <Grid container spacing={4}>
-            {comments.map((comment) => (
-                <Grid item sm={12} md={6} lg={4} xl={3} key={comment.id}>
-                    <Paper className={"PaperBox"} elevation={3}>
-                        <CardHeader
-                            avatar={
-                                <Avatar className={"AvatarBox"} alt={comment.userName} src={comment.userImage} />
-                            }
-                            title={comment.userName}
-                            subheader={comment.date}
+        <div>
+            <Grid container spacing={4}>
+                {comments.map((comment) => (
+                    <Grid item sm={12} md={6} lg={4} xl={3} key={comment.id}>
+                        <Paper className={"PaperBox"} elevation={3}>
+                            <CardHeader
+                                avatar={
+                                    <Avatar className={"AvatarBox"} alt={comment.userName} src={comment.userImage} />
+                                }
+                                title={comment.userName}
+                                subheader={comment.date}
 
-                        />
-                        <CardContent>
-                            <Typography className={"CommentBody"} variant="body2">{comment.text}</Typography>
-                        </CardContent>
-                    </Paper>
-                </Grid>
-            ))}
-            <Grid item xs={12}>
-                <Button variant="outlined">More Comments</Button>
+                            />
+                            <CardContent>
+                                <Typography className={"CommentBody"} variant="body2">{comment.text}</Typography>
+                            </CardContent>
+                        </Paper>
+                    </Grid>
+                ))}
             </Grid>
-        </Grid>
+            <div className={"BottomBox"}>
+                <div className={"MoreCommentBox inter-regular"}>
+                    <span>More Comments &gt;</span>
+
+                    {/*<MdKeyboardArrowRight className={"ArrowIcon"}/>*/}
+                </div>
+            </div>
+        </div>
+
 
     );
 }

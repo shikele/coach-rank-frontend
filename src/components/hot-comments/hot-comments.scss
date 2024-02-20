@@ -7,3 +7,18 @@
 .GridContainer {
   height: 100%;
 }
+
+.BottomBox {
+  display: flex;
+  justify-content: end;
+  padding-top: 20px;
+}
+
+.MoreCommentBox span{
+  margin-top: -5px;
+}
+
+.MoreCommentBox:hover {
+  cursor: pointer;
+  text-shadow: 0 0 .65px #ffb800;
+}
