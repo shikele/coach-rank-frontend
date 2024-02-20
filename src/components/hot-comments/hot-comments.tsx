@@ -2,6 +2,7 @@ import React from 'react';
 import { Grid, Paper, Typography, Avatar, Button } from '@mui/material/';
 
 import './hot-comments.scss';
+import {CardContent, CardHeader} from "@mui/material";
 
 function HotComments() {
     const comments = [
@@ -60,20 +61,6 @@ function HotComments() {
                 "date": "March 02, 2023",
                 "text": "Population real turn issue. And method staff adult rate. Notice message one least challenge different happen.\nPerformance entire every develop. Church together ready represent throw happen customer.",
                 "userImage": "https://placekitten.com/100/100"
-            },
-            {
-                "id": 8,
-                "userName": "Anna Klein",
-                "date": "September 10, 2023",
-                "text": "Natural couple true sign day. Gun measure drug environmental race try. Shake arrive almost however raise run.\nThank Mrs open drug around great. Since pass rich game oil.",
-                "userImage": "https://placeimg.com/100/100/any"
-            },
-            {
-                "id": 9,
-                "userName": "Ricardo Hicks",
-                "date": "February 27, 2023",
-                "text": "Business page conference later officer natural.\nStandard so occur trouble. Change major sing radio. Big price take raise sport PM interview. Name strategy thousand brother air movement his star.",
-                "userImage": "https://placekitten.com/100/100"
             }
         ]
     ;
@@ -81,18 +68,19 @@ function HotComments() {
     return (
         <Grid container spacing={4}>
             {comments.map((comment) => (
-                <Grid item xs={12} sm={6} md={4} key={comment.id}>
+                <Grid item sm={12} md={6} lg={4} xl={3} key={comment.id}>
                     <Paper className={"PaperBox"} elevation={3}>
-                        <Grid container spacing={2} className={"GridContainer"}>
-                            <Grid item>
-                                <Avatar alt={comment.userName} src={comment.userImage} />
-                            </Grid>
-                            <Grid item className={"GridTextItem"}>
-                                <Typography variant="subtitle2">{comment.userName}</Typography>
-                                <Typography variant="caption">{comment.date}</Typography>
-                                <Typography className={"CommentBody"} variant="body2">{comment.text}</Typography>
-                            </Grid>
-                        </Grid>
+                        <CardHeader
+                            avatar={
+                                <Avatar className={"AvatarBox"} alt={comment.userName} src={comment.userImage} />
+                            }
+                            title={comment.userName}
+                            subheader={comment.date}
+
+                        />
+                        <CardContent>
+                            <Typography className={"CommentBody"} variant="body2">{comment.text}</Typography>
+                        </CardContent>
                     </Paper>
                 </Grid>
             ))}
