@@ -1,57 +1,80 @@
 import * as React from 'react';
-import { styled, alpha } from '@mui/material/styles';
+import { styled } from '@mui/material/styles';
 
-import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
 
-const Search = styled('div')(({ theme }) => ({
-    position: 'relative',
-    display: 'inline-block',
-    borderRadius: 30,
-    backgroundColor: alpha(theme.palette.common.white, 0.8),
-    '&:hover': {
-        backgroundColor: alpha(theme.palette.common.white, 0.95),
-    },
-    height: '40px',
-    width: '60%',
-}));
+import coachFullData from '../../components/grid/coach.json';
+import {
+    Autocomplete,
+    Button,
+    createFilterOptions,
+    TextField,
 
-const SearchIconWrapper = styled('div')(({ theme }) => ({
-    padding: theme.spacing(0, 2),
-    height: '100%',
-    position: 'absolute',
-    pointerEvents: 'none',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-}));
+} from "@mui/material";
 
-const StyledInputBase = styled(InputBase)(({ theme }) => ({
-    color: 'inherit',
-    width: '100%',
-    '& .MuiInputBase-input': {
-        padding: theme.spacing(1, 1, 1, 0),
-        // vertical padding + font size from searchIcon
-        paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-        width: '100%',
-        // Add this block to style the placeholder
-        '&::placeholder': {
-            fontSize: '0.8rem'// Adjust the font size as needed
-        },
-    },
-}));
+import './search-bar.scss';
+
+const filterOptions = createFilterOptions({
+    ignoreCase: true,
+    matchFrom: "any",
+    limit: 20,
+});
 
 export default function SearchBar() {
+
+    const uniqueCoachNames = new Set()
+    const uniqueTeamNames = new Set()
+
+    coachFullData.forEach((item) => {
+        uniqueCoachNames.add(item.coach_name);
+        uniqueTeamNames.add(item.team_name);
+    });
+    const mergedUniqueNames = Array.from(new Set([...uniqueCoachNames, ...uniqueTeamNames]));
     return (
-        <Search>
-            <SearchIconWrapper>
-                <SearchIcon />
-            </SearchIconWrapper>
-            <StyledInputBase className={"inter-regular"}
-                placeholder="Search for the coach name, or team name, or type your children's age, such as Girl 12, to find a suitable coach"
-                inputProps={{ 'aria-label': 'search' }}
-            />
-        </Search>
+        <Autocomplete
+            className={"SearchTextBox"}
+            disablePortal
+            filterOptions={filterOptions}
+            id="searchAutoComplete"
+            options={mergedUniqueNames}
+            sx={{
+                width: '80%',
+                '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                    borderRadius: '30px',
+                },
+                '& .MuiOutlinedInput-input': {
+                    paddingLeft: '20px !important', // Adjusts the padding to move placeholder text 2 spaces to the right
+                },
+                '& .MuiOutlinedInput-root': {
+                    '& fieldset': {
+                        borderRadius: '30px'
+                    },
+                    '&:hover fieldset': {
+                        borderRadius: '30px'
+                    },
+                    '&.Mui-focused fieldset': {
+                        borderRadius: '30px'
+                    },
+                }
+            }}
+            renderInput={(params) =>
+                <div>
+                    {/*<div className={"SearchIconWrapper"}>*/}
+                    {/*    <SearchIcon/>*/}
+                    {/*</div>*/}
+
+                    <TextField {...params}
+                               placeholder="Search for the coach name, or team name to find a suitable coach"
+                                className={"SearchTextField"}/>
+                    <Button variant="contained" className={"inter-bold SearchBarButton"}>Search</Button>
+                </div>
+                }
+            componentsProps={{
+                clearIndicator: {style: {display: 'none'}},
+                popupIndicator: {style: {display: 'none'}}
+            }}
+
+        />
 
     );
 }

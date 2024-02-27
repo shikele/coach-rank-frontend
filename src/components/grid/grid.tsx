@@ -1,10 +1,10 @@
 import { ColDef } from 'ag-grid-community';
 import 'ag-grid-community/styles/ag-grid.css';
 import 'ag-grid-community/styles/ag-theme-quartz.css';
-import { AgGridReact } from 'ag-grid-react';
 import React, { useState } from 'react';
 import myData from '../../components/grid/coach.json';
 import 'ag-grid-enterprise';
+import {AgGridReact} from "ag-grid-react";
 
 // Row Data Interface
 interface IRow {

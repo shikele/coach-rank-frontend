@@ -29,7 +29,6 @@ export default function MainPage() {
                     <h2 className={"inter-bold"}>XF BOYS ECNL 1 TEAMS WERE 10-1-1 IN PHOENIX ECNL SHOWCASE</h2>
                     <div className={"SearchDiv"}>
                         <SearchBar></SearchBar>
-                        <Button variant="contained" className={"inter-bold"}>Search</Button>
                     </div>
 
                 </div>
