@@ -16,6 +16,7 @@ import {GoPeople} from "react-icons/go";
 import {IoFootballOutline, IoMenu} from "react-icons/io5";
 
 import './grid-page.scss';
+import {useLocation} from "react-router-dom";
 
 const sideMenu = [
     { title: 'Home', path: '/home', Icon: FiHome },
@@ -29,9 +30,16 @@ type Anchor = 'top' | 'left' | 'bottom' | 'right';
 
 function GridPage() {
 
+    const location = useLocation();
+    const { keyword, optionSelected} = location.state || {};
+
+
+    console.log(keyword, optionSelected)
+
     const [state, setState] = React.useState({
         left: false
     });
+
 
     const toggleDrawer =
         (anchor: Anchor, open: boolean) =>
@@ -91,7 +99,7 @@ function GridPage() {
                     </Drawer>
                 </React.Fragment>
             ))}
-            <GridExample/>
+            <GridExample filterKeyword={keyword} filterType={optionSelected}/>
         </div>
     );
 }
